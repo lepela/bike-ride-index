@@ -22,7 +22,11 @@
 ## 명령
 
 - Python 테스트: `cd pipeline && python -m unittest discover -s tests`
-- 안드로이드 빌드·테스트: (Task 9에서 채움)
+- 안드로이드 테스트·빌드(PowerShell):
+  `$env:JAVA_HOME="C:\Program Files\Android\Android Studio\jbr"; cd android; .\gradlew.bat :app:testDebugUnitTest :app:assembleDebug`
+  - Git Bash: `cd android && JAVA_HOME="C:/Program Files/Android/Android Studio/jbr" ./gradlew.bat :app:testDebugUnitTest`
+  - `android/local.properties`에 `sdk.dir=C:/Users/<사용자>/AppData/Local/Android/Sdk`가 필요하다(커밋하지 않음).
+  - 저장소 경로에 한글이 있으면 빌드 출력이 `%TEMP%ike-ride-index-build\`로 간다. APK는 `%TEMP%ike-ride-index-buildpp\outputspk\debugpp-debug.apk`. 한글 경로의 build 폴더에서는 단위 테스트 워커가 클래스를 찾지 못한다(`android/build.gradle.kts` 참고).
 
 ## 비밀값 위치
 
