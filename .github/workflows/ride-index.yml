@@ -1,0 +1,105 @@
+name: ride-index
+
+on:
+  schedule:
+    # 평일 06:30 KST(am: 출근+퇴근), 평일 17:00 KST(pm: 퇴근 갱신)
+    - cron: '30 21 * * 0-4'
+    - cron: '0 8 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      run:
+        description: 'am / pm / auto'
+        type: choice
+        options: [auto, am, pm]
+        default: auto
+      force:
+        description: '이미 게시됐거나 주말이어도 실행'
+        type: boolean
+        default: false
+  pull_request:
+
+permissions:
+  contents: write
+  id-token: write   # claude-code-action이 요구
+
+concurrency:
+  group: ride-index
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      DRY: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+        # 표준 라이브러리만 쓴다 - 설치할 의존성 없음
+
+      - name: Unit tests
+        working-directory: pipeline
+        run: python -m unittest discover -s tests
+
+      - name: Prepare (fetch + rule engine)
+        id: prep
+        working-directory: pipeline
+        env:
+          HOME_LAT: ${{ secrets.HOME_LAT }}
+          HOME_LON: ${{ secrets.HOME_LON }}
+          WORK_LAT: ${{ secrets.WORK_LAT }}
+          WORK_LON: ${{ secrets.WORK_LON }}
+          KMA_SERVICE_KEY: ${{ secrets.KMA_SERVICE_KEY }}
+        run: |
+          ARGS=""
+          if [ "$DRY" = "true" ]; then
+            ARGS="--docs ../work/docs-dry --force"
+          else
+            [ "${{ inputs.force }}" = "true" ] && ARGS="--force"
+            [ -n "${{ inputs.run }}" ] && ARGS="$ARGS --run ${{ inputs.run }}"
+          fi
+          python -m bri prepare $ARGS
+
+      # 지수 산출은 Claude 구독(OAuth 토큰)으로 실행한다. API 크레딧을 쓰지 않는다.
+      # 실패해도 finalize가 규칙 기준 점수로 게시한다(source: rule).
+      - name: Claude scores
+        if: steps.prep.outputs.skip == 'false'
+        continue-on-error: true
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --allowedTools "Read,Write,Glob,Grep,TodoWrite"
+            --max-turns 15
+          prompt: |
+            pipeline/prompt.md 를 Read 도구로 읽고 그대로 따르라.
+            입력은 work/claude_input.json, 출력은 work/claude_output.json 이다.
+            파일을 쓴 뒤에는 아무것도 하지 마라. git 명령이나 커밋은 하지 마라.
+
+      - name: Finalize (validate + floors + publish)
+        if: steps.prep.outputs.skip == 'false'
+        working-directory: pipeline
+        run: |
+          if [ "$DRY" = "true" ]; then
+            python -m bri finalize --docs ../work/docs-dry
+            { echo '```json'; cat ../work/docs-dry/latest.json; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          else
+            python -m bri finalize
+          fi
+
+      - name: Commit and push
+        if: steps.prep.outputs.skip == 'false' && github.event_name != 'pull_request'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/latest.json docs/rules.json docs/history
+          if git diff --staged --quiet; then
+            echo "no changes to commit"
+          else
+            RUN=$(python -c "import json;print(json.load(open('docs/latest.json'))['run'])")
+            git commit -m "index: $(TZ=Asia/Seoul date +%F) ${RUN}"
+            git push
+          fi
