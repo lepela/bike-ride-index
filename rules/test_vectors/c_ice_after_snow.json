@@ -1,0 +1,306 @@
+{
+ "name": "c_ice_after_snow",
+ "points": {
+  "home": {
+   "ecmwf_ifs025": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "gfs_seamless": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "icon_seamless": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "jma_seamless": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   }
+  },
+  "work": {
+   "ecmwf_ifs025": {
+    "temp": [
+     0.5,
+     0.5
+    ],
+    "apparent": [
+     -3,
+     -3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 2.0
+   },
+   "gfs_seamless": {
+    "temp": [
+     0.5,
+     0.5
+    ],
+    "apparent": [
+     -3,
+     -3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 2.0
+   },
+   "icon_seamless": {
+    "temp": [
+     0.5,
+     0.5
+    ],
+    "apparent": [
+     -3,
+     -3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 2.0
+   },
+   "jma_seamless": {
+    "temp": [
+     0.5,
+     0.5
+    ],
+    "apparent": [
+     -3,
+     -3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 2.0
+   }
+  }
+ },
+ "expected": {
+  "ice_risk": "높음",
+  "rule_score": 40,
+  "confidence": "높음",
+  "floor_cap": 39,
+  "floor_label": "ice",
+  "final_score": 39,
+  "grade": "타지 않음"
+ }
+}

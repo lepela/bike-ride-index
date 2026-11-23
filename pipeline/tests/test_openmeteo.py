@@ -11,7 +11,7 @@ FIX = Path(__file__).parent / "fixtures"
 
 class TestOpenMeteo(unittest.TestCase):
     def test_parse_fixture(self):
-        body = json.load(open(FIX / "openmeteo_seoul.json", encoding="utf-8"))
+        body = json.loads((FIX / "openmeteo_seoul.json").read_text(encoding="utf-8"))
         out = parse_response(body, ["ecmwf_ifs025", "gfs_seamless", "icon_seamless", "jma_seamless"])
         self.assertEqual([s.model for s in out], ["ecmwf_ifs025", "gfs_seamless", "icon_seamless", "jma_seamless"])
         self.assertEqual(len(out[0].times), 96)

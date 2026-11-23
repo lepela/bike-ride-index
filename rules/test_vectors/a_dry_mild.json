@@ -1,0 +1,306 @@
+{
+ "name": "a_dry_mild",
+ "points": {
+  "home": {
+   "ecmwf_ifs025": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "gfs_seamless": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "icon_seamless": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "jma_seamless": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   }
+  },
+  "work": {
+   "ecmwf_ifs025": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "gfs_seamless": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "icon_seamless": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "jma_seamless": {
+    "temp": [
+     5,
+     5
+    ],
+    "apparent": [
+     3,
+     3
+    ],
+    "dewpoint": [
+     0,
+     0
+    ],
+    "precip": [
+     0,
+     0
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   }
+  }
+ },
+ "expected": {
+  "ice_risk": "없음",
+  "rule_score": 100,
+  "confidence": "높음",
+  "floor_cap": null,
+  "floor_label": null,
+  "final_score": 100,
+  "grade": "좋음"
+ }
+}
