@@ -1,0 +1,469 @@
+{
+ "generated_at": "2026-11-24T06:30:00+09:00",
+ "run": "am",
+ "source": "claude",
+ "models_used": [
+  "ecmwf_ifs025",
+  "gfs_seamless",
+  "icon_seamless",
+  "jma_seamless"
+ ],
+ "slots": [
+  {
+   "id": "commute_in",
+   "date": "2026-11-24",
+   "time": "08:30",
+   "score": 55,
+   "grade": "비추천",
+   "confidence": "보통",
+   "summary": "샘플 요약",
+   "reasons": [
+    "샘플 근거"
+   ],
+   "deviation_reason": null,
+   "rule_score": 55,
+   "floor_applied": null,
+   "weather": {
+    "temp_c": -1.1,
+    "apparent_c": -5.9,
+    "precip_mm_h": {
+     "min": 0.0,
+     "max": 0.0
+    },
+    "snow_models": 0,
+    "ice_risk": "낮음",
+    "gust_ms": 12.9
+   },
+   "weather_by_model": {
+    "home": {
+     "ecmwf_ifs025": {
+      "hours": [
+       "08:00",
+       "09:00"
+      ],
+      "temp": [
+       -1.2,
+       -0.8
+      ],
+      "precip": [
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null
+      ]
+     },
+     "gfs_seamless": {
+      "hours": [
+       "08:00",
+       "09:00"
+      ],
+      "temp": [
+       0.9,
+       1.5
+      ],
+      "precip": [
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null
+      ]
+     },
+     "icon_seamless": {
+      "hours": [
+       "08:00",
+       "09:00"
+      ],
+      "temp": [
+       -1.4,
+       -0.3
+      ],
+      "precip": [
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null
+      ]
+     },
+     "jma_seamless": {
+      "hours": [
+       "08:00",
+       "09:00"
+      ],
+      "temp": [
+       -1.1,
+       -0.7
+      ],
+      "precip": [
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null
+      ]
+     }
+    },
+    "work": {
+     "ecmwf_ifs025": {
+      "hours": [
+       "08:00",
+       "09:00",
+       "10:00"
+      ],
+      "temp": [
+       -1.2,
+       -0.8,
+       -0.2
+      ],
+      "precip": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null,
+       null
+      ]
+     },
+     "gfs_seamless": {
+      "hours": [
+       "08:00",
+       "09:00",
+       "10:00"
+      ],
+      "temp": [
+       0.9,
+       1.5,
+       0.6
+      ],
+      "precip": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null,
+       null
+      ]
+     },
+     "icon_seamless": {
+      "hours": [
+       "08:00",
+       "09:00",
+       "10:00"
+      ],
+      "temp": [
+       -1.4,
+       -0.3,
+       0.6
+      ],
+      "precip": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null,
+       null
+      ]
+     },
+     "jma_seamless": {
+      "hours": [
+       "08:00",
+       "09:00",
+       "10:00"
+      ],
+      "temp": [
+       -1.1,
+       -0.7,
+       0.2
+      ],
+      "precip": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null,
+       null
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "commute_out",
+   "date": "2026-11-24",
+   "time": "18:30",
+   "score": 75,
+   "grade": "주의",
+   "confidence": "보통",
+   "summary": "샘플 요약",
+   "reasons": [
+    "샘플 근거"
+   ],
+   "deviation_reason": null,
+   "rule_score": 75,
+   "floor_applied": null,
+   "weather": {
+    "temp_c": -1.9,
+    "apparent_c": -6.7,
+    "precip_mm_h": {
+     "min": 0.0,
+     "max": 0.0
+    },
+    "snow_models": 0,
+    "ice_risk": "없음",
+    "gust_ms": 11.5
+   },
+   "weather_by_model": {
+    "work": {
+     "ecmwf_ifs025": {
+      "hours": [
+       "18:00",
+       "19:00"
+      ],
+      "temp": [
+       -0.8,
+       -1.5
+      ],
+      "precip": [
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null
+      ]
+     },
+     "gfs_seamless": {
+      "hours": [
+       "18:00",
+       "19:00"
+      ],
+      "temp": [
+       0.2,
+       -0.2
+      ],
+      "precip": [
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null
+      ]
+     },
+     "icon_seamless": {
+      "hours": [
+       "18:00",
+       "19:00"
+      ],
+      "temp": [
+       -2.1,
+       -2.7
+      ],
+      "precip": [
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null
+      ]
+     },
+     "jma_seamless": {
+      "hours": [
+       "18:00",
+       "19:00"
+      ],
+      "temp": [
+       -0.9,
+       -1.4
+      ],
+      "precip": [
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null
+      ]
+     }
+    },
+    "home": {
+     "ecmwf_ifs025": {
+      "hours": [
+       "18:00",
+       "19:00",
+       "20:00"
+      ],
+      "temp": [
+       -0.8,
+       -1.5,
+       -2.0
+      ],
+      "precip": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null,
+       null
+      ]
+     },
+     "gfs_seamless": {
+      "hours": [
+       "18:00",
+       "19:00",
+       "20:00"
+      ],
+      "temp": [
+       0.2,
+       -0.2,
+       -0.6
+      ],
+      "precip": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null,
+       null
+      ]
+     },
+     "icon_seamless": {
+      "hours": [
+       "18:00",
+       "19:00",
+       "20:00"
+      ],
+      "temp": [
+       -2.1,
+       -2.7,
+       -3.0
+      ],
+      "precip": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null,
+       null
+      ]
+     },
+     "jma_seamless": {
+      "hours": [
+       "18:00",
+       "19:00",
+       "20:00"
+      ],
+      "temp": [
+       -0.9,
+       -1.4,
+       -1.9
+      ],
+      "precip": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "snowfall": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "pty": [
+       null,
+       null,
+       null
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

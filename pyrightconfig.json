@@ -1,0 +1,4 @@
+{
+  "extraPaths": ["pipeline"],
+  "pythonVersion": "3.12"
+}

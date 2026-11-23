@@ -1,0 +1,378 @@
+{
+ "name": "d_snow_two_models",
+ "points": {
+  "home": {
+   "ecmwf_ifs025": {
+    "temp": [
+     -1,
+     -1
+    ],
+    "apparent": [
+     -6,
+     -6
+    ],
+    "dewpoint": [
+     -2,
+     -2
+    ],
+    "precip": [
+     0.5,
+     0.5
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "gfs_seamless": {
+    "temp": [
+     -1,
+     -1
+    ],
+    "apparent": [
+     -6,
+     -6
+    ],
+    "dewpoint": [
+     -2,
+     -2
+    ],
+    "precip": [
+     0.5,
+     0.5
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "icon_seamless": {
+    "temp": [
+     -1,
+     -1
+    ],
+    "apparent": [
+     -6,
+     -6
+    ],
+    "dewpoint": [
+     -2,
+     -2
+    ],
+    "precip": [
+     0.5,
+     0.5
+    ],
+    "snowfall": [
+     0.3,
+     0.3
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "jma_seamless": {
+    "temp": [
+     -1,
+     -1
+    ],
+    "apparent": [
+     -6,
+     -6
+    ],
+    "dewpoint": [
+     -2,
+     -2
+    ],
+    "precip": [
+     0.5,
+     0.5
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "kma_vilage": {
+    "temp": [
+     -1,
+     -1
+    ],
+    "apparent": [
+     null,
+     null
+    ],
+    "dewpoint": [
+     null,
+     null
+    ],
+    "precip": [
+     0.5,
+     0.5
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     null,
+     null
+    ],
+    "surface_temp": [
+     null,
+     null
+    ],
+    "pty": [
+     3,
+     3
+    ],
+    "past24_precip": null,
+    "past48_snowfall": null
+   }
+  },
+  "work": {
+   "ecmwf_ifs025": {
+    "temp": [
+     -1,
+     -1
+    ],
+    "apparent": [
+     -6,
+     -6
+    ],
+    "dewpoint": [
+     -2,
+     -2
+    ],
+    "precip": [
+     0.5,
+     0.5
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "gfs_seamless": {
+    "temp": [
+     -1,
+     -1
+    ],
+    "apparent": [
+     -6,
+     -6
+    ],
+    "dewpoint": [
+     -2,
+     -2
+    ],
+    "precip": [
+     0.5,
+     0.5
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "icon_seamless": {
+    "temp": [
+     -1,
+     -1
+    ],
+    "apparent": [
+     -6,
+     -6
+    ],
+    "dewpoint": [
+     -2,
+     -2
+    ],
+    "precip": [
+     0.5,
+     0.5
+    ],
+    "snowfall": [
+     0.3,
+     0.3
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "jma_seamless": {
+    "temp": [
+     -1,
+     -1
+    ],
+    "apparent": [
+     -6,
+     -6
+    ],
+    "dewpoint": [
+     -2,
+     -2
+    ],
+    "precip": [
+     0.5,
+     0.5
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     5,
+     5
+    ],
+    "surface_temp": [
+     6,
+     6
+    ],
+    "pty": [
+     null,
+     null
+    ],
+    "past24_precip": 0,
+    "past48_snowfall": 0
+   },
+   "kma_vilage": {
+    "temp": [
+     -1,
+     -1
+    ],
+    "apparent": [
+     null,
+     null
+    ],
+    "dewpoint": [
+     null,
+     null
+    ],
+    "precip": [
+     0.5,
+     0.5
+    ],
+    "snowfall": [
+     0,
+     0
+    ],
+    "gust": [
+     null,
+     null
+    ],
+    "surface_temp": [
+     null,
+     null
+    ],
+    "pty": [
+     3,
+     3
+    ],
+    "past24_precip": null,
+    "past48_snowfall": null
+   }
+  }
+ },
+ "expected": {
+  "ice_risk": "낮음",
+  "rule_score": 0,
+  "confidence": "낮음",
+  "floor_cap": 39,
+  "floor_label": "snow",
+  "final_score": 0,
+  "grade": "타지 않음"
+ }
+}

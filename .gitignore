@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+work/
+.superpowers/
+android/.gradle/
+android/build/
+android/app/build/
+android/.idea/
+android/.kotlin/
+local.properties
+*.apk
+.env
