@@ -25,14 +25,14 @@
    "floor_applied": null,
    "weather": {
     "temp_c": -1.1,
-    "apparent_c": -5.7,
+    "apparent_c": -5.9,
     "precip_mm_h": {
      "min": 0.0,
      "max": 0.0
     },
     "snow_models": 0,
     "ice_risk": "낮음",
-    "gust_ms": 9.7
+    "gust_ms": 12.9
    },
    "weather_by_model": {
     "home": {
@@ -129,21 +129,26 @@
      "ecmwf_ifs025": {
       "hours": [
        "08:00",
-       "09:00"
+       "09:00",
+       "10:00"
       ],
       "temp": [
        -1.2,
-       -0.8
+       -0.8,
+       -0.2
       ],
       "precip": [
+       0.0,
        0.0,
        0.0
       ],
       "snowfall": [
        0.0,
+       0.0,
        0.0
       ],
       "pty": [
+       null,
        null,
        null
       ]
@@ -151,21 +156,26 @@
      "gfs_seamless": {
       "hours": [
        "08:00",
-       "09:00"
+       "09:00",
+       "10:00"
       ],
       "temp": [
        0.9,
-       1.5
+       1.5,
+       0.6
       ],
       "precip": [
+       0.0,
        0.0,
        0.0
       ],
       "snowfall": [
        0.0,
+       0.0,
        0.0
       ],
       "pty": [
+       null,
        null,
        null
       ]
@@ -173,21 +183,26 @@
      "icon_seamless": {
       "hours": [
        "08:00",
-       "09:00"
+       "09:00",
+       "10:00"
       ],
       "temp": [
        -1.4,
-       -0.3
+       -0.3,
+       0.6
       ],
       "precip": [
+       0.0,
        0.0,
        0.0
       ],
       "snowfall": [
        0.0,
+       0.0,
        0.0
       ],
       "pty": [
+       null,
        null,
        null
       ]
@@ -195,21 +210,26 @@
      "jma_seamless": {
       "hours": [
        "08:00",
-       "09:00"
+       "09:00",
+       "10:00"
       ],
       "temp": [
        -1.1,
-       -0.7
+       -0.7,
+       0.2
       ],
       "precip": [
+       0.0,
        0.0,
        0.0
       ],
       "snowfall": [
        0.0,
+       0.0,
        0.0
       ],
       "pty": [
+       null,
        null,
        null
       ]
@@ -232,8 +252,8 @@
    "rule_score": 75,
    "floor_applied": null,
    "weather": {
-    "temp_c": -1.4,
-    "apparent_c": -6.4,
+    "temp_c": -1.9,
+    "apparent_c": -6.7,
     "precip_mm_h": {
      "min": 0.0,
      "max": 0.0
@@ -337,21 +357,26 @@
      "ecmwf_ifs025": {
       "hours": [
        "18:00",
-       "19:00"
+       "19:00",
+       "20:00"
       ],
       "temp": [
        -0.8,
-       -1.5
+       -1.5,
+       -2.0
       ],
       "precip": [
+       0.0,
        0.0,
        0.0
       ],
       "snowfall": [
        0.0,
+       0.0,
        0.0
       ],
       "pty": [
+       null,
        null,
        null
       ]
@@ -359,21 +384,26 @@
      "gfs_seamless": {
       "hours": [
        "18:00",
-       "19:00"
+       "19:00",
+       "20:00"
       ],
       "temp": [
        0.2,
-       -0.2
+       -0.2,
+       -0.6
       ],
       "precip": [
+       0.0,
        0.0,
        0.0
       ],
       "snowfall": [
        0.0,
+       0.0,
        0.0
       ],
       "pty": [
+       null,
        null,
        null
       ]
@@ -381,21 +411,26 @@
      "icon_seamless": {
       "hours": [
        "18:00",
-       "19:00"
+       "19:00",
+       "20:00"
       ],
       "temp": [
        -2.1,
-       -2.7
+       -2.7,
+       -3.0
       ],
       "precip": [
+       0.0,
        0.0,
        0.0
       ],
       "snowfall": [
        0.0,
+       0.0,
        0.0
       ],
       "pty": [
+       null,
        null,
        null
       ]
@@ -403,21 +438,26 @@
      "jma_seamless": {
       "hours": [
        "18:00",
-       "19:00"
+       "19:00",
+       "20:00"
       ],
       "temp": [
        -0.9,
-       -1.4
+       -1.4,
+       -1.9
       ],
       "precip": [
+       0.0,
        0.0,
        0.0
       ],
       "snowfall": [
        0.0,
+       0.0,
        0.0
       ],
       "pty": [
+       null,
        null,
        null
       ]

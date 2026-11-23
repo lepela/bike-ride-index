@@ -92,6 +92,16 @@ class TestCli(unittest.TestCase):
         self.assertNotIn("kma_vilage", latest["models_used"])
         self.assertEqual(len(latest["models_used"]), 4)
 
+    def test_prepare_fails_when_too_few_models(self):
+        # I1: 쓸 수 있는 모델이 최소치보다 적으면 100점을 게시하지 않고 실패한다
+        one_model = lambda *_a, **_k: om_series()[:1]  # noqa: E731
+        with patch("bri.openmeteo.fetch_point", side_effect=one_model), \
+                patch("bri.kma.fetch_point", return_value=None):
+            rc = self.prepare("--run", "am")
+        self.assertNotEqual(rc, 0)
+        self.assertFalse((self.work / "claude_input.json").exists())
+        self.assertFalse((self.docs / "latest.json").exists())
+
     def test_second_prepare_skips(self):
         self.prepare_ok()
         self.finalize()

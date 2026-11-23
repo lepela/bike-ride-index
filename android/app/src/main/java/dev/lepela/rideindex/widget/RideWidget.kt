@@ -2,6 +2,8 @@ package dev.lepela.rideindex.widget
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -53,12 +55,16 @@ fun gradeColor(grade: String?): Color = when (grade) {
 
 class RideWidget : GlanceAppWidget() {
     override suspend fun provideGlance(context: Context, id: GlanceId) {
-        val snap = SettingsStore(context).snapshot()
-        val today = LocalDate.now(KST)
-        val display = DisplayResolver.resolve(today, snap.lastPublished, snap.lastDevice,
-            snap.lastPublished ?: snap.lastDevice)
-        val now = LocalTime.now(KST)
-        provideContent { Content(display, now) }
+        val store = SettingsStore(context)
+        val initial = store.snapshot()
+        // 세션이 살아 있으면 update() 때 provideGlance 를 다시 부르지 않는다.
+        // 저장값을 구성 안에서 구독해야 갱신 작업이 쓴 새 값이 바로 그려진다.
+        provideContent {
+            val snap by store.snapshots.collectAsState(initial = initial)
+            val display = DisplayResolver.resolve(LocalDate.now(KST), snap.lastPublished, snap.lastDevice,
+                snap.lastPublished ?: snap.lastDevice)
+            Content(display, LocalTime.now(KST))
+        }
     }
 
     @Composable

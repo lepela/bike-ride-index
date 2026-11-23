@@ -15,6 +15,7 @@ data class Rules(
     val openmeteoModels: List<String>,
     val weekdays: List<Int>,
     val slots: Map<String, SlotRule>,
+    val minModels: Int,
     val wetPrecipMm: Double,
     val precipSteps: List<Pair<Double?, Int>>,
     val snowSingle: Int,
@@ -63,6 +64,7 @@ fun loadRules(json: String): Rules {
                 },
             )
         },
+        minModels = root.getValue("min_models").jsonPrimitive.int,
         wetPrecipMm = root.d("wet_precip_mm"),
         precipSteps = score.getValue("precip_steps").jsonArray.map {
             val a = it as JsonArray

@@ -32,13 +32,6 @@ def _write_json(path: Path, data) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8", newline="\n")
 
 
-def _bounds(date: str, hhmm: str) -> datetime:
-    """창 경계 시각을 시 단위로 내린다(08:30 → 08:00)."""
-    d = datetime.fromisoformat(date)
-    h, _m = map(int, hhmm.split(":"))
-    return d + timedelta(hours=h)
-
-
 def _hourly(windows: dict, start: datetime, end: datetime) -> dict:
     hours = []
     t = start
@@ -98,11 +91,16 @@ def cmd_prepare(args) -> int:
         conf = rules["slots"][slot_id]
         points, hourly = {}, {}
         for point, (a, b) in conf["points"].items():
-            start, end = _bounds(date, a), _bounds(date, b)
+            start, end = publish.window_bounds(date, a, b)
             windows = build_model_windows(series[point], start, end)
             points[point] = windows
             hourly[point] = _hourly(windows, start, end)
         ev = evaluate_slot(points, rules)
+        n = ev["features"]["n_models"] or 0
+        if n < rules["min_models"]:
+            print(f"쓸 수 있는 모델이 {n}개({slot_id}) — 최소 {rules['min_models']}개 미만이라 게시하지 않음",
+                  file=sys.stderr)
+            return 1
         state_slots.append({"id": slot_id, "time": conf["time"], "eval": ev, "weather_by_model": hourly})
         input_slots.append({"id": slot_id, "time": conf["time"], "eval": ev, "hourly": hourly})
 

@@ -3,6 +3,7 @@ package dev.lepela.rideindex.data
 import dev.lepela.rideindex.engine.loadRules
 import dev.lepela.rideindex.model.parsePublished
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.time.LocalDate
@@ -41,7 +42,7 @@ class DataLayerTest {
     @Test
     fun deviceCalculationMatchesPythonSample() {
         val series = OpenMeteo.parse(text("openmeteo_seoul.json"), models)
-        val p = DeviceCalculator.compute(LocalDate.of(2026, 11, 24), mapOf("home" to series, "work" to series), rules)
+        val p = DeviceCalculator.compute(LocalDate.of(2026, 11, 24), mapOf("home" to series, "work" to series), rules)!!
         val sample = parsePublished(text("latest.sample.json"))
         assertEquals("device", p.source)
         assertEquals(listOf("commute_in", "commute_out"), p.slots.map { it.id })
@@ -54,6 +55,14 @@ class DataLayerTest {
             assertTrue(mine.summary.isNotBlank() && mine.summary.length <= 60)
             assertEquals("2026-11-24", mine.date)
         }
+    }
+
+    /** I1: 쓸 수 있는 모델이 최소치 미만이면 100점 대신 null(어제 값 경로). */
+    @Test
+    fun tooFewModelsGivesNull() {
+        val one = OpenMeteo.parse(text("openmeteo_seoul.json"), models).take(1)
+        assertNull(DeviceCalculator.compute(LocalDate.of(2026, 11, 24), mapOf("home" to one, "work" to one), rules))
+        assertEquals(2, rules.minModels)
     }
 
     @Test

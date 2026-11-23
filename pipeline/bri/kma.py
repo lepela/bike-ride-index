@@ -106,16 +106,24 @@ def parse_items(body: str, model_name: str) -> ModelSeries | None:
         if resp["header"]["resultCode"] != "00":
             return None
         items = resp["body"]["items"]["item"]
-    except (ValueError, KeyError, TypeError):
+    except (ValueError, KeyError, TypeError, AttributeError):
+        return None
+
+    if isinstance(items, dict):  # 결과가 1건이면 리스트가 아닌 객체로 올 수 있다
+        items = [items]
+    if not isinstance(items, list):
         return None
 
     by_time: dict[datetime, dict[str, float | None]] = {}
     for it in items:
-        name = CATEGORY_MAP.get(it.get("category"))
-        if name is None:
-            continue
-        t = datetime.strptime(it["fcstDate"] + it["fcstTime"], "%Y%m%d%H%M")
-        by_time.setdefault(t, {})[name] = _to_number(it["category"], str(it["fcstValue"]))
+        try:
+            name = CATEGORY_MAP.get(it.get("category"))
+            if name is None:
+                continue
+            t = datetime.strptime(it["fcstDate"] + it["fcstTime"], "%Y%m%d%H%M")
+            by_time.setdefault(t, {})[name] = _to_number(it["category"], str(it["fcstValue"]))
+        except (AttributeError, KeyError, TypeError, ValueError):
+            continue  # 형식이 어긋난 항목만 건너뛴다
     if not by_time:
         return None
 

@@ -6,7 +6,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from bri.engine import evaluate_slot
-from bri.publish import assemble_latest, final_slot, resolve_run, should_skip, slots_for_run
+from bri.publish import assemble_latest, final_slot, resolve_run, should_skip, slots_for_run, window_bounds
 from bri.rules import REPO_ROOT, load_rules
 
 MODELS = ["ecmwf_ifs025", "kma_vilage"]
@@ -38,6 +38,13 @@ class TestPublish(unittest.TestCase):
         self.assertEqual(resolve_run(datetime(2026, 11, 24, 17, 3), None), "pm")
         self.assertEqual(resolve_run(datetime(2026, 11, 24, 17, 3), "am"), "am")
         self.assertEqual(resolve_run(datetime(2026, 11, 24, 6, 3), "auto"), "am")
+
+    def test_window_bounds_round_end_up(self):
+        # I2: 강수·적설은 직전 1시간 합이다. 끝 시각은 올림해 마지막 30분을 포함한다
+        self.assertEqual(window_bounds("2026-11-24", "08:30", "09:30"),
+                         (datetime(2026, 11, 24, 8), datetime(2026, 11, 24, 10)))
+        self.assertEqual(window_bounds("2026-11-24", "08:00", "09:00"),
+                         (datetime(2026, 11, 24, 8), datetime(2026, 11, 24, 9)))
 
     def test_slots_for_run(self):
         self.assertEqual(slots_for_run("am"), ["commute_in", "commute_out"])

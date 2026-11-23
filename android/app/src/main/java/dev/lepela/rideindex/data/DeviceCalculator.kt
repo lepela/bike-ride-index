@@ -7,13 +7,13 @@ import dev.lepela.rideindex.engine.Rules
 import dev.lepela.rideindex.engine.SlotEval
 import dev.lepela.rideindex.engine.ModelSeries
 import dev.lepela.rideindex.engine.buildModelWindows
+import dev.lepela.rideindex.engine.windowBounds
 import dev.lepela.rideindex.model.ModelHours
 import dev.lepela.rideindex.model.PrecipRange
 import dev.lepela.rideindex.model.Published
 import dev.lepela.rideindex.model.PublishedSlot
 import dev.lepela.rideindex.model.SlotWeather
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -34,18 +34,14 @@ object DeviceCalculator {
         return compute(today, mapOf("home" to h, "work" to w), rules)
     }
 
-    /** 경계 시각을 시 단위로 내린다(08:30 → 08:00). */
-    private fun bound(date: LocalDate, hhmm: String): LocalDateTime =
-        date.atTime(hhmm.substringBefore(":").toInt(), 0)
-
-    fun compute(today: LocalDate, series: Map<String, List<ModelSeries>>, rules: Rules): Published {
+    /** 쓸 수 있는 모델이 rules.minModels 미만인 슬롯이 있으면 null(100점을 만들지 않는다). */
+    fun compute(today: LocalDate, series: Map<String, List<ModelSeries>>, rules: Rules): Published? {
         val slots = listOf("commute_in", "commute_out").map { id ->
             val conf = rules.slots.getValue(id)
             val points = mutableMapOf<String, Map<String, ModelWindow>>()
             val hourly = mutableMapOf<String, Map<String, ModelHours>>()
             for ((point, range) in conf.points) {
-                val start = bound(today, range.first)
-                val end = bound(today, range.second)
+                val (start, end) = windowBounds(today, range.first, range.second)
                 val windows = buildModelWindows(series[point].orEmpty(), start, end)
                 points[point] = windows
                 val hours = generateSequence(start) { it.plusHours(1) }.takeWhile { !it.isAfter(end) }
@@ -55,6 +51,7 @@ object DeviceCalculator {
                 }
             }
             val ev = RuleEngine.evaluateSlot(points, rules)
+            if (ev.features.nModels < rules.minModels) return null
             slot(id, today.toString(), conf.time, ev, hourly, rules)
         }
         val used = rules.openmeteoModels.filter { m -> series.values.all { list -> list.any { it.model == m } } }

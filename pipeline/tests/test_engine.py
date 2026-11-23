@@ -55,6 +55,33 @@ class TestEngine(unittest.TestCase):
         self.assertAlmostEqual(w["past48_snowfall"], 4.8)
         self.assertAlmostEqual(w["past24_precip"], 4.8)
 
+    def test_past_values_none_when_series_does_not_cover_window(self):
+        # 기상청 단기예보처럼 발표 이후 값만 있는 시계열(C1): 과거 합을 0으로 만들면 안 된다
+        from datetime import timedelta
+        times = [datetime(2026, 11, 24, 6) + timedelta(hours=h) for h in range(5)]
+        s = ModelSeries("kma_vilage", times, {"temp": [-1.0] * 5, "precip": [0.0] * 5, "snowfall": [0.0] * 5})
+        w = build_model_windows([s], datetime(2026, 11, 24, 8), datetime(2026, 11, 24, 9))["kma_vilage"]
+        self.assertIsNone(w["past24_precip"])
+        self.assertIsNone(w["past48_snowfall"])
+
+    def test_kma_window_does_not_erase_ice_high(self):
+        # Open-Meteo 4개 중 2개가 과거 적설을 보고하면, 기상청 창이 더해져도 결빙 높음이 유지된다
+        from datetime import timedelta
+        rules = load_rules()
+        om = {}
+        for name, snow in (("a", 0.5), ("b", 0.3), ("c", 0.0), ("d", 0.0)):
+            om[name] = {"temp": [-1.0, -1.0], "apparent": [-1.0, -1.0], "dewpoint": [-5.0, -5.0],
+                        "precip": [0.0, 0.0], "snowfall": [0.0, 0.0], "gust": [3.0, 3.0],
+                        "surface_temp": [None, None], "pty": [None, None],
+                        "past24_precip": 0.0, "past48_snowfall": snow}
+        times = [datetime(2026, 11, 24, 6) + timedelta(hours=h) for h in range(5)]
+        kma = ModelSeries("kma_vilage", times, {"temp": [-1.0] * 5, "precip": [0.0] * 5, "snowfall": [0.0] * 5,
+                                                 "pty": [0.0] * 5})
+        om["kma_vilage"] = build_model_windows([kma], datetime(2026, 11, 24, 8), datetime(2026, 11, 24, 9))["kma_vilage"]
+        r = evaluate_slot({"home": om, "work": om}, rules)
+        self.assertEqual(r["ice_risk"], "높음")
+        self.assertEqual(r["floor_cap"], 39)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -45,6 +45,18 @@ class TestKma(unittest.TestCase):
         body = {"response": {"header": {"resultCode": "03", "resultMsg": "NO_DATA"}}}
         self.assertIsNone(parse_items(json.dumps(body), "kma_vilage"))
 
+    def test_odd_item_shapes_do_not_raise(self):
+        # I3: item 이 단일 객체이거나 필드가 빠져도 예외 없이 처리한다
+        one = {"category": "TMP", "fcstDate": "20261124", "fcstTime": "0800", "fcstValue": "-1"}
+        body = {"response": {"header": {"resultCode": "00"}, "body": {"items": {"item": one}}}}
+        s = parse_items(json.dumps(body), "kma_vilage")
+        self.assertEqual(s.values["temp"], [-1.0])
+        broken = {"response": {"header": {"resultCode": "00"},
+                               "body": {"items": {"item": [{"category": "TMP", "fcstValue": "1"}, one]}}}}
+        self.assertEqual(parse_items(json.dumps(broken), "kma_vilage").values["temp"], [-1.0])
+        empty = {"response": {"header": {"resultCode": "00"}, "body": {"items": ""}}}
+        self.assertIsNone(parse_items(json.dumps(empty), "kma_vilage"))
+
     def test_url_encodes_key(self):
         url = build_url("a+b/c=", "20261124", "0500", 60, 127)
         self.assertIn("serviceKey=a%2Bb%2Fc%3D", url)

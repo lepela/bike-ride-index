@@ -1,5 +1,5 @@
 """실행 판정, 멱등 확인, 게시 JSON 조립."""
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -17,6 +17,23 @@ def resolve_run(now_kst: datetime, override: str | None) -> str:
     if override in ("am", "pm"):
         return override
     return "am" if now_kst.hour < 12 else "pm"
+
+
+def window_bounds(date: str, start_hhmm: str, end_hhmm: str) -> tuple[datetime, datetime]:
+    """슬롯 창의 시각 라벨 범위. 시작은 시 단위로 내리고 끝은 올린다.
+
+    Open-Meteo 강수·적설은 라벨 시각 직전 1시간 합이라, 08:30~09:30 창은 08·09·10시 라벨을 봐야
+    09:00~09:30 구간이 들어간다.
+    """
+    d = datetime.fromisoformat(date)
+
+    def at(hhmm: str) -> tuple[int, int]:
+        h, m = map(int, hhmm.split(":"))
+        return h, m
+
+    sh, _ = at(start_hhmm)
+    eh, em = at(end_hhmm)
+    return d + timedelta(hours=sh), d + timedelta(hours=eh + (1 if em else 0))
 
 
 def slots_for_run(run: str) -> list[str]:
