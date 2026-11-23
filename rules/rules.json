@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "openmeteo_models": ["ecmwf_ifs025", "gfs_seamless", "icon_seamless", "jma_seamless"],
+  "kma_model_name": "kma_vilage",
+  "weekdays": [1, 2, 3, 4, 5],
+  "slots": {
+    "commute_in":  {"time": "08:30", "points": {"home": ["08:00", "09:00"], "work": ["08:30", "09:30"]}},
+    "commute_out": {"time": "18:30", "points": {"work": ["18:00", "19:00"], "home": ["18:30", "19:30"]}}
+  },
+  "wet_precip_mm": 0.1,
+  "score": {
+    "precip_steps": [[0.1, 0], [1.0, 10], [3.0, 25], [null, 45]],
+    "snow_single": 30, "snow_multi": 60,
+    "ice_low": 20, "ice_high": 50,
+    "cold_apparent_c": 0.0, "cold_penalty": 10,
+    "very_cold_apparent_c": -5.0, "very_cold_penalty": 25,
+    "gust_ms": 15.0, "gust_penalty": 15
+  },
+  "ice": {
+    "high_temp_max": 1.0, "high_surface_max": 0.0,
+    "low_precip24_min": 1.0, "low_temp_max": 3.0,
+    "frost_temp_max": 2.0, "frost_spread_max": 1.0
+  },
+  "floors": {"snow_multi": 39, "ice_high": 39, "ice_low": 59, "snow_single": 59},
+  "grades": [[80, "좋음"], [60, "주의"], [40, "비추천"], [0, "타지 않음"]],
+  "claude": {"max_deviation_without_reason": 15}
+}
